@@ -1,0 +1,9 @@
+.sidebar {
+  background-color: black;
+}
+
+@media (max-width: 767px) {
+  .sidebar {
+    margin-left: "-320px";
+  }
+}
