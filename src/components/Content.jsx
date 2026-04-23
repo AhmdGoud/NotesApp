@@ -21,6 +21,8 @@ const Content = ({ dispatch }) => {
       });
 
       undo();
+    } else {
+      alert("Required Input");
     }
   }
 

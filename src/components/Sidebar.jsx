@@ -1,8 +1,24 @@
+import { useEffect, useState } from "react";
 import { styles } from "../styles/mainlayout";
 import Navbar from "./Navbar";
 import NoteItem from "./NoteItem";
 
 const Sidebar = ({ handelNote, noteData, numNotes, dispatch }) => {
+  const [searched, setSearched] = useState(noteData);
+  const [searchInput, setSearchInput] = useState("");
+
+  useEffect(() => {
+    setSearched(noteData);
+  }, [noteData]);
+
+  function handelSearchNotes(value) {
+    const result = noteData.filter((note) => {
+      return note.title.toLowerCase().includes(value);
+    });
+
+    setSearched(result);
+  }
+
   return (
     <div style={styles.sidebar} className="sidebar">
       <Navbar />
@@ -12,10 +28,19 @@ const Sidebar = ({ handelNote, noteData, numNotes, dispatch }) => {
         <span>{numNotes} notes</span>
       </div>
 
-      <input style={styles.searchInput} placeholder="Search notes..." />
+      <input
+        style={styles.searchInput}
+        placeholder="Search notes..."
+        value={searchInput}
+        onChange={(e) => {
+          const value = e.target.value;
+          setSearchInput(value);
+          handelSearchNotes(value);
+        }}
+      />
 
       <div style={styles.notesList}>
-        {noteData?.map((note) => {
+        {searched?.map((note) => {
           return (
             <NoteItem
               key={note.id}
