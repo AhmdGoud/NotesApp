@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { styles } from "../styles/mainlayout";
 
-const Content = ({ dispatch }) => {
+const Content = ({ dispatch, showNoteInputs }) => {
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
 
@@ -20,6 +20,8 @@ const Content = ({ dispatch }) => {
         },
       });
 
+      showNoteInputs(false);
+
       undo();
     } else {
       alert("Required Input");
@@ -30,7 +32,7 @@ const Content = ({ dispatch }) => {
     <div style={styles.content}>
       <div>
         <input
-          placeholder="Note Tilte"
+          placeholder="Tilte"
           value={title}
           style={styles.inputTitle}
           onChange={(e) => setTitle(e.target.value)}

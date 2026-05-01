@@ -1,5 +1,5 @@
 import { useReducer } from "react";
-import handelNoteData from "./ReducerFunction";
+import handelNoteData from "./HandelNoteStatus";
 
 function useNoteData() {
   const initNotes = () => {

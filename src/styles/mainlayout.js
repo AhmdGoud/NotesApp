@@ -109,6 +109,16 @@ export const styles = {
     height: "300px",
     marginTop: "5px",
   },
+  editInput: {
+    width: "95%",
+    outline: "none",
+    padding: "3px 8px",
+    border: "1px solid #ccc",
+    borderRadius: "3px",
+    margin: "1px 3px",
+    boxSizing: "border-box",
+    fontSize: "14px",
+  },
 
   button: {
     borderRadius: "5px",

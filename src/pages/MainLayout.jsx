@@ -3,37 +3,43 @@ import { useEffect, useState } from "react";
 
 import Sidebar from "../components/Sidebar";
 import Content from "../components/Content";
-import useNoteData from "../components/useReducer";
+import useNoteData from "../reducers/useNoteData";
+
+import { TheNotes } from "../reducers/NotesContext";
 
 function MainLayout() {
   const [noteData, dispatch] = useNoteData();
 
   useEffect(() => {
-    setNumNotes(noteData.length);
     localStorage.setItem("theNotes", JSON.stringify(noteData));
   }, [noteData]);
 
   const [newNoteInputs, setNewNoteInputs] = useState(false);
-  const [numNotes, setNumNotes] = useState(0);
 
-  const showNoteInputs = () => {
-    setNewNoteInputs(true);
+  const showNoteInputs = (bol) => {
+    setNewNoteInputs(bol);
   };
 
   return (
-    <div style={styles.mainLayout}>
-      <aside>
-        <Sidebar
-          handelNote={showNoteInputs}
-          numNotes={numNotes}
-          noteData={noteData}
-          dispatch={dispatch}
-        />
-      </aside>
-      <section style={styles.section}>
-        {newNoteInputs ? <Content dispatch={dispatch} /> : "Create New Note"}
-      </section>
-    </div>
+    <TheNotes.Provider value={noteData}>
+      <div style={styles.mainLayout}>
+        <aside>
+          <Sidebar
+            showNoteInputs={showNoteInputs}
+            numNotes={noteData.length}
+            noteData={noteData}
+            dispatch={dispatch}
+          />
+        </aside>
+        <section style={styles.section}>
+          {newNoteInputs ? (
+            <Content dispatch={dispatch} showNoteInputs={showNoteInputs} />
+          ) : (
+            "Create New Note"
+          )}
+        </section>
+      </div>
+    </TheNotes.Provider>
   );
 }
 export default MainLayout;

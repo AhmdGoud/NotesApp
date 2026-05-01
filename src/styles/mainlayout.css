@@ -1,9 +1,26 @@
-.sidebar {
+.noteItem:hover {
+  background-color: rgb(236, 230, 222);
+}
+.saveEdits,
+.undo {
+  border: none;
+  border-radius: 3px;
+  background-color: #eee;
+  color: black;
+  margin: 1px;
+}
+.edits {
+  border: 1px solid rgb(160, 160, 160);
+  margin: 1px;
+}
+.saveEdits:hover,
+.undo:hover {
+  color: white;
   background-color: black;
 }
 
 @media (max-width: 767px) {
   .sidebar {
-    margin-left: "-320px";
+    margin-left: -320px;
   }
 }

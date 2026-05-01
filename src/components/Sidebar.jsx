@@ -3,7 +3,7 @@ import { styles } from "../styles/mainlayout";
 import Navbar from "./Navbar";
 import NoteItem from "./NoteItem";
 
-const Sidebar = ({ handelNote, noteData, numNotes, dispatch }) => {
+const Sidebar = ({ showNoteInputs, noteData, numNotes, dispatch }) => {
   const [searched, setSearched] = useState(noteData);
   const [searchInput, setSearchInput] = useState("");
 
@@ -53,7 +53,7 @@ const Sidebar = ({ handelNote, noteData, numNotes, dispatch }) => {
         })}
       </div>
 
-      <div style={styles.newNoteBtn} onClick={() => handelNote()}>
+      <div style={styles.newNoteBtn} onClick={() => showNoteInputs(true)}>
         + New note
       </div>
     </div>

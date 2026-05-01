@@ -19,15 +19,18 @@ const handelNoteData = (notes, action) => {
     });
 
     return filtered;
+  } else if (type === "edit") {
+    const { id, title, desc } = action.payload;
+
+    const theNotes = notes.map((note) => {
+      if (note.id === id) {
+        note.title = title;
+        note.desc = desc;
+      }
+      return note;
+    });
+
+    return theNotes;
   }
-  // else if (type === "edit") {
-  //   const { id } = action.payload;
-
-  //   const noteToEdit = notes.find((note) => {
-  //     return note.id === id;
-  //   });
-
-  //   return noteToEdit;
-  // }
 };
 export default handelNoteData;
