@@ -9,6 +9,13 @@
   color: black;
   margin: 1px;
 }
+.dateAndTag {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+  margin-top: 3px;
+}
 .edits {
   border: 1px solid rgb(160, 160, 160);
   margin: 1px;
@@ -17,10 +24,4 @@
 .undo:hover {
   color: white;
   background-color: black;
-}
-
-@media (max-width: 767px) {
-  .sidebar {
-    margin-left: -320px;
-  }
 }

@@ -3,7 +3,7 @@ import { useContext, useState } from "react";
 import { TheNotes } from "../reducers/NotesContext";
 import "../styles/mainlayout.css";
 
-const NoteItem = ({ title, desc, dispatch, id }) => {
+const NoteItem = ({ title, desc, dispatch, id, time }) => {
   const notes = useContext(TheNotes);
   const [noteToEdit, setNoteToEdit] = useState({});
   const [showEdits, setShowEdits] = useState(false);
@@ -35,15 +35,37 @@ const NoteItem = ({ title, desc, dispatch, id }) => {
     });
 
     setNoteToEdit({});
+    setShowEdits(false);
+  }
+
+  function timeAgo(createdAt) {
+    const now = Date.now();
+    const diff = now - createdAt;
+
+    const seconds = Math.floor(diff / 1000);
+    const minutes = Math.floor(diff / (1000 * 60));
+    const hours = Math.floor(diff / (1000 * 60 * 60));
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+
+    if (seconds < 60) return "just now";
+    if (minutes < 60) return `${minutes} min ago`;
+    if (hours < 24) return `${hours} hr ago`;
+
+    return `${days} day ago`;
   }
 
   return (
     <>
       <div style={styles.noteItem} className="noteItem">
-        <div>
+        <div style={{ width: "80%" }}>
           <div style={styles.noteTitle}>{title}</div>
           <div style={styles.noteDesc}>{desc}</div>
+          <div className="dateAndTag">
+            <p>{timeAgo(time)}</p>
+            <p>Tag</p>
+          </div>
         </div>
+
         <div>
           <div style={{ fontSize: "20px" }} onClick={() => edit()}>
             🖍
@@ -54,6 +76,7 @@ const NoteItem = ({ title, desc, dispatch, id }) => {
         </div>
       </div>
 
+      {/* edit div  */}
       <div style={{ ...styles.noteItem, display: showEdits ? "flex" : "none" }}>
         <div>
           <input

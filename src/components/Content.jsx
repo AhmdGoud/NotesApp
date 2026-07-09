@@ -5,6 +5,10 @@ const Content = ({ dispatch, showNoteInputs }) => {
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
 
+  const [showTag, setShowTag] = useState(false);
+  const [tag, setTag] = useState("");
+  const [tags, setTags] = useState([]);
+
   function undo() {
     setTitle("");
     setDesc("");
@@ -17,6 +21,7 @@ const Content = ({ dispatch, showNoteInputs }) => {
         payload: {
           title: title,
           desc: desc,
+          time: Date.now(),
         },
       });
 
@@ -38,6 +43,38 @@ const Content = ({ dispatch, showNoteInputs }) => {
           onChange={(e) => setTitle(e.target.value)}
         ></input>
       </div>
+
+      {/* start tags */}
+      <div style={{ display: "flex", gap: "5px" }}>
+        <div style={styles.tags}>
+          {tags.map((t) => {
+            return <span key={t.id}>{t.tag}</span>;
+          })}
+        </div>
+        {showTag && (
+          <span>
+            <input
+              value={tag}
+              style={{ ...styles.inputTitle, width: "100px" }}
+              onChange={(e) => setTag(e.target.value)}
+            ></input>
+            <button
+              onClick={() => {
+                setTags((prev) => [...prev, { tag: tag, id: Date.now() }]);
+                setTag("");
+                setShowTag(false);
+              }}
+            >
+              +
+            </button>
+          </span>
+        )}
+        <button style={styles.button} onClick={() => setShowTag(true)}>
+          addTag
+        </button>
+      </div>
+      {/* end tags */}
+
       <div>
         <textarea
           placeholder="Description"

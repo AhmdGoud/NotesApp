@@ -7,7 +7,6 @@ export const styles = {
   },
 
   sidebar: {
-    // marginLeft: window.innerWidth < 768 ? "-320px" : "",
     width: "320px",
     height: "100vh",
     backgroundColor: "#fafafa",
@@ -69,17 +68,18 @@ export const styles = {
 
   noteTitle: {
     fontWeight: "bold",
-    fontSize: "16px",
+    fontSize: "18px",
   },
 
   noteDesc: {
     fontSize: "14px",
-    color: "#444",
+    color: "#424242",
   },
 
-  noteTime: {
-    fontSize: "12px",
-    color: "#888",
+  tags: {
+    display: "flex",
+    gap: "5px",
+    alignItems: "center",
   },
 
   newNoteBtn: {

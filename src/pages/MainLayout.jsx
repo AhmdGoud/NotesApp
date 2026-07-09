@@ -6,6 +6,7 @@ import Content from "../components/Content";
 import useNoteData from "../reducers/useNoteData";
 
 import { TheNotes } from "../reducers/NotesContext";
+import folder from "../images/folder-open-outline.svg";
 
 function MainLayout() {
   const [noteData, dispatch] = useNoteData();
@@ -35,7 +36,10 @@ function MainLayout() {
           {newNoteInputs ? (
             <Content dispatch={dispatch} showNoteInputs={showNoteInputs} />
           ) : (
-            "Create New Note"
+            <div>
+              <img src={folder} alt="folder"></img>
+              <p>Create New Note</p>
+            </div>
           )}
         </section>
       </div>

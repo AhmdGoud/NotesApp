@@ -48,6 +48,7 @@ const Sidebar = ({ showNoteInputs, noteData, numNotes, dispatch }) => {
               desc={note.desc}
               dispatch={dispatch}
               id={note.id}
+              time={note.time}
             />
           );
         })}
